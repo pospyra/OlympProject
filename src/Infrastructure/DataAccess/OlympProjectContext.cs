@@ -1,4 +1,5 @@
 ﻿using DataAccess.Configuration;
+using Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using System;
@@ -15,6 +16,7 @@ namespace DataAccess
             : base(options)
         {
         }
+        public DbSet<Account> DomainAccount { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

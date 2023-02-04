@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Contracts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,9 @@ namespace AppServices.Services.Account
 {
     public interface IAccountService
     {
-        public Task<Domain.Account> GetAccountById(int id);
+        public Task<InfoAccountResponse> GetAccountById(int id);
+
+        public Task<IReadOnlyCollection<InfoAccountResponse>> GetAccountByFillters(string? firstName, string? lastName, string? email, int from, int size);
+
     }
 }

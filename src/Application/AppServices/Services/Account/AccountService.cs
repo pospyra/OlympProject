@@ -1,4 +1,5 @@
 ﻿using AppServices.IRepository;
+using Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,24 @@ namespace AppServices.Services.Account
             _accountRepository = accountRepository;
         }
 
-        public async Task<Domain.Account> GetAccountById(int id)
+        public async Task<IReadOnlyCollection<InfoAccountResponse>> GetAccountByFillters(string? firstName, string? lastName, string? email, int from, int size)
         {
-            return await _accountRepository.GetAccountById(id);
+            return await _accountRepository.GetAccountByFillters(firstName, lastName, email, from, size);
+        }
+
+        public async Task<InfoAccountResponse> GetAccountById(int id)
+        {
+            var user =  await _accountRepository.GetAccountById(id);
+
+            var res = new InfoAccountResponse()
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email
+            };
+
+            return res;
         }
     }
 }
