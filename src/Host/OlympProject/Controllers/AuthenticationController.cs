@@ -8,9 +8,6 @@ using System.Net;
 
 namespace AdBoard.Api.Controllers
 {
-    /// <summary>
-    /// Работа с Пользователями
-    /// </summary>
     [Route("v1/[controller]")]
     [ApiController]
 

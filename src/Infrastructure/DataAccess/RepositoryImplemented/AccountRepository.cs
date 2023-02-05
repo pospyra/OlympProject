@@ -24,7 +24,7 @@ namespace DataAccess.RepositoryImplemented
 
         public async Task<IReadOnlyCollection<InfoAccountResponse>> GetAccountByFillters(string? firstName, string? lastName, string? email, int from, int size)
         {
-            var query = _baseRepository.GetAll();
+            var query =_baseRepository.GetAll();
 
             if (!string.IsNullOrEmpty(firstName))
                 query = query.Where(x => x.FirstName.ToLower() == firstName.ToLower());

@@ -1,5 +1,6 @@
 ﻿using AppServices.IRepository;
 using AppServices.Services.Account;
+using AppServices.Services.Animal;
 using DataAccess;
 using DataAccess.RepositoryImplemented;
 using Infrastructure.BaseRepositoty;
@@ -31,6 +32,9 @@ namespace Registrar
 
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IAccountRepository, AccountRepository>();
+
+            services.AddTransient<IAnimalService, AnimalService>();
+            services.AddTransient<IAnimalRepository, AnimalRepository>();
 
             return services;
         }

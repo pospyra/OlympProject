@@ -17,7 +17,7 @@ namespace AppServices.Services.Account
             _accountRepository = accountRepository;
         }
 
-        public async Task<IReadOnlyCollection<InfoAccountResponse>> GetAccountByFillters(string? firstName, string? lastName, string? email, int from, int size)
+        public async Task<IReadOnlyCollection<InfoAccountResponse>> GetAccountByFillters(string? firstName, string? lastName, string? email, int from = 10, int size = 0)
         {
             return await _accountRepository.GetAccountByFillters(firstName, lastName, email, from, size);
         }

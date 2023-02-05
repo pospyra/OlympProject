@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>OlympProject</name>
+    </assembly>
+    <members>
+        <member name="M:OlympProject.Controllers.AccountController.GetById(System.Int32)">
+            <summary>
+            Поиск аккаунта по ID
+            </summary>
+            <param name="accountId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OlympProject.Controllers.AccountController.GetAccountsByFillters(System.String,System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Поиск аккаунта по параметрам
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OlympProject.Controllers.AnimalController.GetById(System.Int32)">
+            <summary>
+            Поиск животного по ID
+            </summary>
+            <param name="animalId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OlympProject.Controllers.AnimalController.GetByFilters(System.DateTime,System.DateTime,System.Int32,System.Int64,System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Поиск животного по параметрам
+            </summary>
+            <param name="animalId"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
