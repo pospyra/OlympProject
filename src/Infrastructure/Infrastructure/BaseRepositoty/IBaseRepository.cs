@@ -32,13 +32,15 @@ namespace Infrastructure.Repositoty
             ///Возвращает все значения <see cref="TEntity"/> по Id
             ///</summary>
             ///<param name="Id"> Идентификатор <see cref="TEntity"/>.</param>
-            Task<TEntity> GetByIdAsync(int? Id);
+            Task<TEntity> GetByIdAsync(long Id);
 
-            ///<summary>
-            ///Добавить элемент <see cref="TEntity"/>
-            ///</summary>
-            ///<param name="model"> Новая сущность <see cref="TEntity"/>.</param>
-            Task AddAsync(TEntity model);
+             Task<TEntity> GetByIdAsync(int Id);
+
+             ///<summary>
+             ///Добавить элемент <see cref="TEntity"/>
+             ///</summary>
+             ///<param name="model"> Новая сущность <see cref="TEntity"/>.</param>
+             Task AddAsync(TEntity model);
 
             /// <summary>
             /// Обновляет элемент <see cref="TEntity"/>.

@@ -73,7 +73,7 @@ namespace Infrastructure.BaseRepositoty
         }
 
         /// <inheritdoc />
-        public async Task<TEntity> GetByIdAsync(int? Id)
+        public async Task<TEntity> GetByIdAsync(long Id)          
         {
             return await DbSet.FindAsync(Id);
         }
@@ -88,6 +88,11 @@ namespace Infrastructure.BaseRepositoty
 
             DbSet.Update(model);
             await DbContext.SaveChangesAsync();
+        }
+
+        public async Task<TEntity> GetByIdAsync(int Id)
+        {
+            return await DbSet.FindAsync(Id);
         }
     }
 }

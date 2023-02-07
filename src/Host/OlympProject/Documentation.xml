@@ -8,7 +8,6 @@
             <summary>
             Поиск аккаунта по ID
             </summary>
-            <param name="accountId"></param>
             <returns></returns>
         </member>
         <member name="M:OlympProject.Controllers.AccountController.GetAccountsByFillters(System.String,System.String,System.String,System.Int32,System.Int32)">
@@ -17,7 +16,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:OlympProject.Controllers.AnimalController.GetById(System.Int32)">
+        <member name="M:OlympProject.Controllers.AnimalController.GetById(System.Int64)">
             <summary>
             Поиск животного по ID
             </summary>
@@ -29,6 +28,31 @@
             Поиск животного по параметрам
             </summary>
             <param name="animalId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OlympProject.Controllers.AnimalTypeController.GetAnimalTypeById(System.Int64)">
+            <summary>
+            Получение информации о типе животных по ID
+            </summary>
+            <param name="typeId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OlympProject.Controllers.AnimalVisitedPointController.GetVisitedLocation(System.Int64,System.DateTime,System.DateTime,System.Int32,System.Int32)">
+            <summary>
+            Просмотр информации о перемещении животного
+            </summary>
+            <param name="animalId"></param>
+            <param name="startDateTime"></param>
+            <param name="endDateTime"></param>
+            <param name="from"></param>
+            <param name="size"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OlympProject.Controllers.LocationPointController.GetPointById(System.Int64)">
+            <summary>
+            Получение информацию о точке локации животных
+            </summary>
+            <param name="pointId"></param>
             <returns></returns>
         </member>
     </members>

@@ -1,8 +1,11 @@
 ﻿using AppServices.IRepository;
 using Contracts;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,24 +20,27 @@ namespace AppServices.Services.Account
             _accountRepository = accountRepository;
         }
 
-        public async Task<IReadOnlyCollection<InfoAccountResponse>> GetAccountByFillters(string? firstName, string? lastName, string? email, int from = 10, int size = 0)
+        public async Task<IReadOnlyCollection<InfoAccountResponse>> GetAccountByFillters(string? firstName, string? lastName, string? email, int from, int size)
         {
             return await _accountRepository.GetAccountByFillters(firstName, lastName, email, from, size);
         }
 
         public async Task<InfoAccountResponse> GetAccountById(int id)
         {
-            var user =  await _accountRepository.GetAccountById(id);
+            var account = await _accountRepository.GetAccountById(id);
 
-            var res = new InfoAccountResponse()
+            InfoAccountResponse res = null;
+            if (account == null)
+                return res;
+
+            return res = new InfoAccountResponse()
             {
-                Id = user.Id,
-                FirstName = user.FirstName,
-                LastName = user.LastName,
-                Email = user.Email
+                Id = account.Id,
+                FirstName = account.FirstName,
+                LastName = account.LastName,
+                Email = account.Email
             };
-
-            return res;
         }
+
     }
 }

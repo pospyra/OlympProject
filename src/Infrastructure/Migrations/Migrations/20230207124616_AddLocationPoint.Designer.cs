@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Migrations.Migrations
 {
     [DbContext(typeof(MigrationsDbContext))]
-    partial class MigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230207124616_AddLocationPoint")]
+    partial class AddLocationPoint
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -131,6 +134,9 @@ namespace Migrations.Migrations
                     b.Property<DateTime>("DateTimeOfVisitLocationPoint")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<long>("LocationPointId")
+                        .HasColumnType("bigint");
+
                     b.Property<long>("PointId")
                         .HasColumnType("bigint");
 
@@ -138,7 +144,7 @@ namespace Migrations.Migrations
 
                     b.HasIndex("AnimalId");
 
-                    b.HasIndex("PointId");
+                    b.HasIndex("LocationPointId");
 
                     b.ToTable("AnimalVisitedLocation", (string)null);
                 });
@@ -193,8 +199,8 @@ namespace Migrations.Migrations
                         .IsRequired();
 
                     b.HasOne("Domain.LocationPoint", "LocationPoint")
-                        .WithMany("VisitedPoints")
-                        .HasForeignKey("PointId")
+                        .WithMany()
+                        .HasForeignKey("LocationPointId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -213,11 +219,6 @@ namespace Migrations.Migrations
                     b.Navigation("AnimalTypes");
 
                     b.Navigation("VisitedLocation");
-                });
-
-            modelBuilder.Entity("Domain.LocationPoint", b =>
-                {
-                    b.Navigation("VisitedPoints");
                 });
 #pragma warning restore 612, 618
         }

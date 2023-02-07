@@ -4,20 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain
+namespace Contracts
 {
-    public class AnimalVisitedLocation
+    public class VisitedLocationResponse
     {
         public long Id { get; set; }
-
-        public long AnimalId { get; set; }
 
         public long PointId { get; set; }
 
         public DateTime DateTimeOfVisitLocationPoint { get; set; }
 
-        public Animal Animal { get; set; }
-
-        public LocationPoint LocationPoint { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AppServices.Services.Account;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Drawing;
 using System.Net;
 
 namespace OlympProject.Controllers
@@ -25,8 +26,18 @@ namespace OlympProject.Controllers
         [ProducesResponseType(typeof(IReadOnlyCollection<>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetById(int accountId)
         {
-             var res = await _accountService.GetAccountById(accountId);
-             return Ok(res);
+            if (accountId <= 0 || accountId == null)
+                return BadRequest(HttpStatusCode.BadRequest);
+
+            string currentUser = "";
+            if (currentUser == null)
+                return Unauthorized(HttpStatusCode.Unauthorized);
+
+            var res = await _accountService.GetAccountById(accountId);
+            if (res == null)
+                return NotFound(HttpStatusCode.NotFound);
+
+            return Ok(res);
         }
 
         /// <summary>
@@ -39,6 +50,10 @@ namespace OlympProject.Controllers
         {
             if (from < 0 || from == null || size <= 0 || size == null)
                 return BadRequest(HttpStatusCode.BadRequest);
+
+            string currentUser = "";
+            if (currentUser == null)
+                return Unauthorized(HttpStatusCode.Unauthorized);
 
             var res = await _accountService.GetAccountByFillters(firstName, lastName, email, from, size);
             return Ok(res);

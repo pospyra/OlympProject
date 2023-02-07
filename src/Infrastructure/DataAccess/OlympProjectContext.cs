@@ -16,12 +16,14 @@ namespace DataAccess
             : base(options)
         {
         }
-        public DbSet<Account> DomainAccount { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new AccountConfiguration());
             modelBuilder.ApplyConfiguration(new AnimalTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new LocationPointConfiguration());
+            modelBuilder.ApplyConfiguration(new AnimalConfiguration());
+            modelBuilder.ApplyConfiguration(new AnimalVisitedLocationConfiguration());
         }
     }
 }

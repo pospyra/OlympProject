@@ -28,8 +28,8 @@ namespace Domain
 
         public DateTime DeathDateTime { get; set; }
 
-
         public Account Account { get; set; }
+
         public ICollection<AnimalType> AnimalTypes { get; set; }
 
         public ICollection<AnimalVisitedLocation> VisitedLocation { get; set; }

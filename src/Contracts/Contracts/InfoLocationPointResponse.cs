@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain
+namespace Contracts
 {
-    public class LocationPoint
+    public class InfoLocationPointResponse
     {
         /// <summary>
         /// Идентификатор точки локации
@@ -23,6 +23,5 @@ namespace Domain
         /// </summary>
         public double Longitude { get; set; }
 
-        public ICollection<AnimalVisitedLocation> VisitedPoints { get;set; }
     }
 }

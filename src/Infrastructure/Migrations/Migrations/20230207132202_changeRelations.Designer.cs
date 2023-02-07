@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Migrations.Migrations
 {
     [DbContext(typeof(MigrationsDbContext))]
-    partial class MigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230207132202_changeRelations")]
+    partial class changeRelations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -138,8 +141,6 @@ namespace Migrations.Migrations
 
                     b.HasIndex("AnimalId");
 
-                    b.HasIndex("PointId");
-
                     b.ToTable("AnimalVisitedLocation", (string)null);
                 });
 
@@ -192,15 +193,7 @@ namespace Migrations.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.LocationPoint", "LocationPoint")
-                        .WithMany("VisitedPoints")
-                        .HasForeignKey("PointId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Animal");
-
-                    b.Navigation("LocationPoint");
                 });
 
             modelBuilder.Entity("Domain.Account", b =>
@@ -213,11 +206,6 @@ namespace Migrations.Migrations
                     b.Navigation("AnimalTypes");
 
                     b.Navigation("VisitedLocation");
-                });
-
-            modelBuilder.Entity("Domain.LocationPoint", b =>
-                {
-                    b.Navigation("VisitedPoints");
                 });
 #pragma warning restore 612, 618
         }

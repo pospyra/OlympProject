@@ -25,6 +25,14 @@ namespace DataAccess.RepositoryImplemented
         public async Task<IReadOnlyCollection<InfoAccountResponse>> GetAccountByFillters(string? firstName, string? lastName, string? email, int from, int size)
         {
             var query =_baseRepository.GetAll();
+            int skip = 0;
+            int take = 10;
+
+            if(from >= 0)
+                skip = from;
+
+            if(size > 0)
+                take = size;
 
             if (!string.IsNullOrEmpty(firstName))
                 query = query.Where(x => x.FirstName.ToLower() == firstName.ToLower());
@@ -33,7 +41,7 @@ namespace DataAccess.RepositoryImplemented
                 query = query.Where(x => x.LastName.ToLower() == lastName.ToLower());
 
             if (!string.IsNullOrEmpty(email))
-                query = query.Where(x => x.Email.ToLower() == email.ToLower());
+                query = query.Where(x => x.Email == email);
 
             return await query.Select(p => new InfoAccountResponse
             {
@@ -41,8 +49,7 @@ namespace DataAccess.RepositoryImplemented
                 FirstName = p.FirstName,
                 LastName = p.LastName,
                 Email = p.Email,    
-            }).OrderByDescending(p=> p.Id).Skip((from -1) * size).Take(size).ToListAsync();
-            
+            }).OrderByDescending(p=> p.Id).Skip(skip).Take(take).ToListAsync();
         }
 
         public async Task<Account> GetAccountById(int id)

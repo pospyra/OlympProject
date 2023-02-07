@@ -12,7 +12,7 @@ namespace AppServices.IRepository
 {
     public interface IAnimalRepository
     {
-        public Task<Animal> GetAnimalById(int id);
+        public Task<Animal> GetAnimalById(long id);
 
         public Task<IReadOnlyCollection<Animal>> GetAllAnimal();
 

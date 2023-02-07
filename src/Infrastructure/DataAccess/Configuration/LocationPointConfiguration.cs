@@ -17,6 +17,13 @@ namespace DataAccess.Configuration
 
             builder.HasKey(b => b.Id);
             builder.Property(b => b.Id).ValueGeneratedOnAdd();
+
+            builder.HasMany(p => p.VisitedPoints)
+            .WithOne(a => a.LocationPoint)
+             .HasForeignKey(a => a.PointId);
+
+
+
         }
     }
 }

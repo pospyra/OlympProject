@@ -13,20 +13,6 @@ namespace AdBoard.Api.Controllers
 
     public class AuthenticationController : ControllerBase
     {
-        //public readonly IUserService _userService;
 
-        //public AuthenticationController(IUserService userService)
-        //{
-        //    _userService = userService;
-        //}
-
-
-        [Route("api/[controller]/[action]")]
-        [HttpPost()]
-        [ProducesResponseType(typeof(IReadOnlyCollection<>), StatusCodes.Status201Created)]
-        public async Task<IActionResult> Registration()
-        {
-            return Ok();
-        }
     }
 }

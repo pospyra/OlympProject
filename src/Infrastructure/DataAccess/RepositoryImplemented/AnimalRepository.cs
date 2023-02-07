@@ -44,7 +44,7 @@ namespace DataAccess.RepositoryImplemented
                 }).ToListAsync();
         }
 
-        public async Task<Animal> GetAnimalById(int id)
+        public async Task<Animal> GetAnimalById(long id)
         {
             return await _baseRepository.GetByIdAsync(id);
         }
