@@ -10,8 +10,10 @@ namespace AppServices.IRepository
 {
     public interface IAccountRepository
     {
+        IQueryable<Account> GetAll();
+
         public Task<Account> GetAccountById(int id);
 
-        public Task<IReadOnlyCollection<InfoAccountResponse>> GetAccountByFillters(string? firstName, string? lastName, string? email, int from, int size);
+        //public Task<IReadOnlyCollection<InfoAccountResponse>> GetAccountByFillters(string? firstName, string? lastName, string? email, int from, int size);
     }
 }

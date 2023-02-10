@@ -1,4 +1,5 @@
 ﻿using AppServices.IRepository;
+using AppServices.MappingProfile;
 using AppServices.Services.Account;
 using AppServices.Services.Animal;
 using AppServices.Services.AnimalType;
@@ -15,7 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using AutoMapper;
 namespace Registrar
 {
 
@@ -32,6 +33,13 @@ namespace Registrar
             services.AddScoped((Func<IServiceProvider, DbContext>)(sp => sp.GetRequiredService<OlympProjectContext>()));
 
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+
+
+            services.AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()));
+
+
+            //services.AddAutoMapper(typeof(AccountMapProfile), typeof(AnimalMapProfile), 
+            //    typeof(AnimalTypeMapProfile), typeof(LocationPointMapProfile), typeof(VisitedLocatiomMapProfile));
 
             //регистрация аккаунта
             services.AddTransient<IAccountService, AccountService>();
@@ -54,6 +62,19 @@ namespace Registrar
             services.AddTransient<IAnimalVisitedLocationRepository, AnimalVisitedLocationRepository>();
 
             return services;
+        }
+        private static MapperConfiguration GetMapperConfiguration()
+        {
+            var mapperCongig = new MapperConfiguration(config =>
+            {
+                config.AddProfile(new AccountMapProfile());
+                config.AddProfile(new AnimalMapProfile());
+                config.AddProfile(new AnimalTypeMapProfile());
+                config.AddProfile(new LocationPointMapProfile());
+                config.AddProfile(new VisitedLocatiomMapProfile());
+            });
+           // mapperCongig.AssertConfigurationIsValid();
+            return mapperCongig;
         }
     }
 }

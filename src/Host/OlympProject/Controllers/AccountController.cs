@@ -26,7 +26,7 @@ namespace OlympProject.Controllers
         [ProducesResponseType(typeof(IReadOnlyCollection<>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetById(int accountId)
         {
-            if (accountId <= 0 || accountId == null)
+            if (accountId < 0 || accountId == null)
                 return BadRequest(HttpStatusCode.BadRequest);
 
             string currentUser = "";
@@ -48,8 +48,8 @@ namespace OlympProject.Controllers
         [ProducesResponseType(typeof(IReadOnlyCollection<>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> GetAccountsByFillters(string? firstName, string? lastName, string? email, int from, int size)
         {
-            if (from < 0 || from == null || size <= 0 || size == null)
-                return BadRequest(HttpStatusCode.BadRequest);
+            //if (from < 0 || from == null || size <= 0 || size == null)
+            //    return BadRequest(HttpStatusCode.BadRequest);
 
             string currentUser = "";
             if (currentUser == null)
