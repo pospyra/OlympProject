@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Contracts;
+using Contracts.LocationPoint;
 using Domain;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,9 @@ namespace AppServices.MappingProfile
     {
         public LocationPointMapProfile() 
         { 
-            CreateMap<LocationPoint, InfoLocationPointResponse>();
+            CreateMap<LocationPoint, InfoLocationPointResponse>().ReverseMap();
+            CreateMap<InfoLocationPointResponse, AddOrUpdatePointRequest>().ReverseMap();
+            CreateMap<LocationPoint, AddOrUpdatePointRequest>().ReverseMap();
         }
 
     }

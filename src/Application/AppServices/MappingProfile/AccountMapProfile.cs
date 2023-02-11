@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Contracts;
+using Contracts.Account;
 using Domain;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,9 @@ namespace AppServices.MappingProfile
     {
         public AccountMapProfile() 
         {
-            CreateMap<Account, InfoAccountResponse>();
+            CreateMap<Account, InfoAccountResponse>().ReverseMap();
+            CreateMap<Account, RegisterOrUpdateRequest>().ReverseMap();
+            CreateMap<InfoAccountResponse, RegisterOrUpdateRequest>().ReverseMap();
         }
     }
 }

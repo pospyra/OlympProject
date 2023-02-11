@@ -18,8 +18,8 @@ namespace Domain
         /// </summary>
         public string Type { get; set; }
 
-        public long AnimalId { get; set; }
+        public long? AnimalId { get; set; }
 
-        public Animal Animal { get; set; }
+        public Animal? Animal { get; set; }
     }
 }

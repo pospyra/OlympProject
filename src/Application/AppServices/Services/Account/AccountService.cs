@@ -1,6 +1,6 @@
 ﻿using AppServices.IRepository;
 using AutoMapper;
-using Contracts;
+using Contracts.Account;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
@@ -26,6 +26,20 @@ namespace AppServices.Services.Account
             _mapper = mapper;
         }
 
+        public async Task DeleteAccount(int id)
+        {
+            var exisringAccount = await _accountRepository.GetAccountById(id);
+            await _accountRepository.DeleteAccount(exisringAccount);
+        }
+
+        public async Task<InfoAccountResponse> EditAccount(int accountId, RegisterOrUpdateRequest update)
+        {
+            var existingAccount = await _accountRepository.GetAccountById(accountId);
+
+            await _accountRepository.EditAccount(_mapper.Map(update, existingAccount));
+
+            return _mapper.Map<InfoAccountResponse>(update);
+        }
 
         public async Task<IReadOnlyCollection<InfoAccountResponse>> GetAccountByFillters(string? firstName, string? lastName, string? email, int from, int size)
         {
@@ -70,6 +84,19 @@ namespace AppServices.Services.Account
                 return res;
 
             return res = _mapper.Map<InfoAccountResponse>(account);
+        }
+
+        public async Task<InfoAccountResponse> RegisterAccount(RegisterOrUpdateRequest register)
+        {
+            var registerAcc = _mapper.Map<Domain.Account>(register);
+            var existingUser = _accountRepository.GetAll().Where(x => x.Email == register.Email);
+            if (existingUser != null)
+            {
+                //throw new Exception($"Пользователь с email '{register.Email}' уже существует");
+                return null;
+            }
+            await _accountRepository.Registration(registerAcc);
+            return _mapper.Map<InfoAccountResponse>(registerAcc);
         }
     }
 }

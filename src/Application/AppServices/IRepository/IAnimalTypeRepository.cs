@@ -12,5 +12,11 @@ namespace AppServices.IRepository
         public Task<AnimalType> GetAnimalTypeById(long id);
 
         IQueryable<AnimalType> GetAll();
+
+        public Task AddType(AnimalType model);
+
+        public Task EditType(AnimalType model);
+
+        public Task DeleteType(AnimalType model);
     }
 }

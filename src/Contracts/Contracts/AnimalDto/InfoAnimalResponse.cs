@@ -13,7 +13,7 @@ namespace Contracts.Animal
 
         public long[] AnimalTypesId { get; set; }
 
-        public ICollection<AnimalType> AnimalTypes { get; set; }
+        public ICollection<Domain.AnimalType> AnimalTypes { get; set; }
 
         public float Weihgt { get; set; }
 

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Migrations.Migrations
 {
     [DbContext(typeof(MigrationsDbContext))]
-    partial class MigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230211193628_Animal_TypeDel")]
+    partial class AnimalTypeDel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -103,7 +106,7 @@ namespace Migrations.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
-                    b.Property<long?>("AnimalId")
+                    b.Property<long>("AnimalId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Type")
@@ -111,8 +114,6 @@ namespace Migrations.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AnimalId");
 
                     b.ToTable("AnimalType", (string)null);
                 });
@@ -173,15 +174,6 @@ namespace Migrations.Migrations
                     b.Navigation("Account");
                 });
 
-            modelBuilder.Entity("Domain.AnimalType", b =>
-                {
-                    b.HasOne("Domain.Animal", "Animal")
-                        .WithMany("AnimalTypes")
-                        .HasForeignKey("AnimalId");
-
-                    b.Navigation("Animal");
-                });
-
             modelBuilder.Entity("Domain.AnimalVisitedLocation", b =>
                 {
                     b.HasOne("Domain.Animal", "Animal")
@@ -208,8 +200,6 @@ namespace Migrations.Migrations
 
             modelBuilder.Entity("Domain.Animal", b =>
                 {
-                    b.Navigation("AnimalTypes");
-
                     b.Navigation("VisitedLocation");
                 });
 

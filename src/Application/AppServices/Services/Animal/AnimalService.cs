@@ -1,5 +1,8 @@
 ﻿using AppServices.IRepository;
+using AutoMapper;
 using Contracts.Animal;
+using Contracts.AnimalDto;
+using Contracts.AnimalType;
 using Infrastructure.BaseRepositoty;
 using Infrastructure.Repositoty;
 using Microsoft.EntityFrameworkCore;
@@ -18,17 +21,48 @@ namespace AppServices.Services.Animal
         public readonly IAnimalRepository _animalRepository;
         public readonly IAnimalTypeRepository _animalTypeRepository;
         public readonly IAnimalVisitedLocationRepository _animalVisitedLocationRepository;
+        public readonly IMapper _mapper;
 
         public AnimalService( 
             IAnimalRepository animalRepository, 
             IAnimalTypeRepository animalTypeRepository,
-            IAnimalVisitedLocationRepository animalVisitedLocationRepository)
+            IAnimalVisitedLocationRepository animalVisitedLocationRepository,
+            IMapper mapper)
         {
             _animalRepository = animalRepository;
             _animalTypeRepository = animalTypeRepository;
             _animalVisitedLocationRepository= animalVisitedLocationRepository;
+            _mapper = mapper;
         }
-        public async Task<IReadOnlyCollection<InfoAnimalResponse>> GetAnimalByFillters(DateTime startDateTime, DateTime endDateTime, int chipperId, long chippingLocationId, string lifeStatus, string gender, int from, int size)
+
+        public async Task<InfoAnimalResponse> AddAnimal(AddAnimalRequest request)
+        {
+            var newAnimal = _mapper.Map<Domain.Animal>(request);
+            await _animalRepository.AddAnimal(newAnimal);
+
+            return _mapper.Map<InfoAnimalResponse>(newAnimal);
+        }
+
+        public async Task DeleteAnimal(long id)
+        {
+            var existingAnimal = await _animalRepository.GetAnimalById(id);
+
+            await _animalRepository.DeleteAnimal(existingAnimal);
+        }
+
+        public async Task<InfoAnimalResponse> EditAnimal(long Id, UpdateAnimalRequest request)
+        {
+            var existingAnimal = await _animalRepository.GetAnimalById(Id);
+
+            await _animalRepository.EditAnimal(_mapper.Map(request, existingAnimal));
+
+            return _mapper.Map<InfoAnimalResponse>(request);
+        }
+
+        public async Task<IReadOnlyCollection<InfoAnimalResponse>> GetAnimalByFillters(
+            DateTime startDateTime, DateTime endDateTime, int chipperId, 
+            long chippingLocationId, string lifeStatus, string gender, 
+            int from, int size)
         {
             var animals = _animalRepository.GetAll();
 
@@ -100,6 +134,8 @@ namespace AppServices.Services.Animal
             }
             visitedLocationID = longsVisitedLocarion.ToArray();
 
+            //return animalRes = _mapper.Map<InfoAnimalResponse>(animal);
+
             return animalRes = new InfoAnimalResponse()
             {
                 Id = animal.Id,
@@ -111,7 +147,7 @@ namespace AppServices.Services.Animal
                 ChippingDateTime = animal.ChippingDateTime,
                 ChipperId = animal.ChipperId,
                 ChippingLocationId = animal.ChippingLocationId,
-                VisitedLocations= visitedLocationID,
+                VisitedLocations = visitedLocationID,
                 DeathDateTime = animal.DeathDateTime,
             };
         }

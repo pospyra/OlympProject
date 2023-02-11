@@ -4,15 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts
+namespace Contracts.LocationPoint
 {
-    public class InfoLocationPointResponse
+    public class AddOrUpdatePointRequest
     {
-        /// <summary>
-        /// Идентификатор точки локации
-        /// </summary>
-        public long Id { get; set; }
-
         /// <summary>
         /// Географическая широта в градусах
         /// </summary>
@@ -22,6 +17,5 @@ namespace Contracts
         /// Географическая долгота в градусах
         /// </summary>
         public double Longitude { get; set; }
-
     }
 }

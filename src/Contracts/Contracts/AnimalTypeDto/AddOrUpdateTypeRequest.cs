@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts
+namespace Contracts.AnimalType
 {
-    public class InfoAnimalTypeResponse
+    public class AddOrUpdateTypeRequest
     {
-        public long Id { get; set; }
-
         public string Type { get; set; }
     }
 }

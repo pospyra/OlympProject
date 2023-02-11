@@ -21,6 +21,16 @@ namespace DataAccess.RepositoryImplemented
             _baseRepository = baseRepository;
         }
 
+        public async Task DeleteAnimal(Animal account)
+        {
+            await _baseRepository.DeleteAsync(account);
+        }
+
+        public async Task EditAnimal(Animal model)
+        {
+            await _baseRepository.UpdateAsync(model);
+        }
+
         public IQueryable<Animal> GetAll()
         {
             return _baseRepository.GetAll();
@@ -47,6 +57,11 @@ namespace DataAccess.RepositoryImplemented
         public async Task<Animal> GetAnimalById(long id)
         {
             return await _baseRepository.GetByIdAsync(id);
+        }
+
+        public Task AddAnimal(Animal model)
+        {
+            return _baseRepository.AddAsync(model);
         }
     }
 }

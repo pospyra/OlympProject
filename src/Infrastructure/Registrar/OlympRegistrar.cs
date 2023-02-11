@@ -35,11 +35,11 @@ namespace Registrar
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
 
 
-            services.AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()));
+            //services.AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()));
 
 
-            //services.AddAutoMapper(typeof(AccountMapProfile), typeof(AnimalMapProfile), 
-            //    typeof(AnimalTypeMapProfile), typeof(LocationPointMapProfile), typeof(VisitedLocatiomMapProfile));
+            services.AddAutoMapper(typeof(AccountMapProfile), typeof(AnimalMapProfile),
+                typeof(AnimalTypeMapProfile), typeof(LocationPointMapProfile), typeof(VisitedLocatiomMapProfile));
 
             //регистрация аккаунта
             services.AddTransient<IAccountService, AccountService>();
@@ -63,18 +63,18 @@ namespace Registrar
 
             return services;
         }
-        private static MapperConfiguration GetMapperConfiguration()
-        {
-            var mapperCongig = new MapperConfiguration(config =>
-            {
-                config.AddProfile(new AccountMapProfile());
-                config.AddProfile(new AnimalMapProfile());
-                config.AddProfile(new AnimalTypeMapProfile());
-                config.AddProfile(new LocationPointMapProfile());
-                config.AddProfile(new VisitedLocatiomMapProfile());
-            });
-           // mapperCongig.AssertConfigurationIsValid();
-            return mapperCongig;
-        }
+        //private static MapperConfiguration GetMapperConfiguration()
+        //{
+        //    var mapperCongig = new MapperConfiguration(config =>
+        //    {
+        //        config.AddProfile(new AccountMapProfile());
+        //        config.AddProfile(new AnimalMapProfile());
+        //        config.AddProfile(new AnimalTypeMapProfile());
+        //        config.AddProfile(new LocationPointMapProfile());
+        //        config.AddProfile(new VisitedLocatiomMapProfile());
+        //    });
+        //   // mapperCongig.AssertConfigurationIsValid();
+        //    return mapperCongig;
+        //}
     }
 }

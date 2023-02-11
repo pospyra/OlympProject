@@ -18,6 +18,9 @@ namespace DataAccess.Configuration
             builder.HasKey(b => b.Id);
             builder.Property(b => b.Id).ValueGeneratedOnAdd();
 
+            builder.HasMany(t => t.AnimalTypes)
+                .WithOne(a => a.Animal)
+                .HasForeignKey(a => a.AnimalId);
         }
     }
 }

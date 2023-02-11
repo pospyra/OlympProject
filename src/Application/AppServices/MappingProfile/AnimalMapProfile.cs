@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Contracts.Animal;
+using Contracts.AnimalDto;
 using Domain;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,11 @@ namespace AppServices.MappingProfile
     {
         public AnimalMapProfile()
         {
-            CreateMap<Animal, InfoAnimalResponse>();
+            CreateMap<Animal, InfoAnimalResponse>().ReverseMap();
+            CreateMap<Animal, AddAnimalRequest>().ReverseMap();
+            CreateMap<InfoAnimalResponse, AddAnimalRequest>().ReverseMap();
+            CreateMap<InfoAnimalResponse, UpdateAnimalRequest>().ReverseMap();
+            CreateMap<Animal, UpdateAnimalRequest>().ReverseMap();
         }
     }
 }

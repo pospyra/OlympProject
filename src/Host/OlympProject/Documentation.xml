@@ -16,16 +16,46 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:OlympProject.Controllers.AccountController.EditAccount(System.Int32,Contracts.Account.RegisterOrUpdateRequest)">
+            <summary>
+            Обновление данных аккаунта
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OlympProject.Controllers.AccountController.DeleteAccount(System.Int32)">
+            <summary>
+            Удаление аккаунта
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:OlympProject.Controllers.AnimalController.GetById(System.Int64)">
             <summary>
             Поиск животного по ID
             </summary>
-            <param name="animalId"></param>
             <returns></returns>
         </member>
         <member name="M:OlympProject.Controllers.AnimalController.GetByFilters(System.DateTime,System.DateTime,System.Int32,System.Int64,System.String,System.String,System.Int32,System.Int32)">
             <summary>
             Поиск животного по параметрам
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OlympProject.Controllers.AnimalController.AddType(Contracts.AnimalDto.AddAnimalRequest)">
+            <summary>
+            Добавлене животного
+            </summary>
+            <param name="request"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OlympProject.Controllers.AnimalController.EditAnimal(System.Int64,Contracts.AnimalDto.UpdateAnimalRequest)">
+            <summary>
+            Редактирование данных живльного
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OlympProject.Controllers.AnimalController.DeleteLocationPoint(System.Int64)">
+            <summary>
+            Удаление животного
             </summary>
             <param name="animalId"></param>
             <returns></returns>
@@ -33,6 +63,27 @@
         <member name="M:OlympProject.Controllers.AnimalTypeController.GetAnimalTypeById(System.Int64)">
             <summary>
             Получение информации о типе животных по ID
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OlympProject.Controllers.AnimalTypeController.EditAccount(System.Int64,Contracts.AnimalType.AddOrUpdateTypeRequest)">
+            <summary>
+            Редактирование Типа животного
+            </summary>
+            <param name="typeId"></param>
+            <param name="update"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OlympProject.Controllers.AnimalTypeController.AddType(Contracts.AnimalType.AddOrUpdateTypeRequest)">
+            <summary>
+            Добавление Типа животного
+            </summary>
+            <param name="registerRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OlympProject.Controllers.AnimalTypeController.DeleteLocationPoint(System.Int64)">
+            <summary>
+            Удаление типа животного
             </summary>
             <param name="typeId"></param>
             <returns></returns>
@@ -52,7 +103,32 @@
             <summary>
             Получение информацию о точке локации животных
             </summary>
-            <param name="pointId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OlympProject.Controllers.LocationPointController.AddLocationPoint(Contracts.LocationPoint.AddOrUpdatePointRequest)">
+            <summary>
+            Добавление точки локации
+            </summary>
+            <param name="registerRequest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OlympProject.Controllers.LocationPointController.EditLocationPoint(System.Int64,Contracts.LocationPoint.AddOrUpdatePointRequest)">
+            <summary>
+            Редактирование точки локации
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OlympProject.Controllers.LocationPointController.DeleteLocationPoint(System.Int64)">
+            <summary>
+            Удаление точки локации
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AdBoard.Api.Controllers.AuthenticationController.Registration(Contracts.Account.RegisterOrUpdateRequest)">
+            <summary>
+            Регистрация аккаунта
+            </summary>
+            <param name="registerRequest"></param>
             <returns></returns>
         </member>
     </members>

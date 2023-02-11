@@ -9,6 +9,11 @@ namespace AppServices.IRepository
 {
     public interface ILocationPointRepository
     {
+        public IQueryable<LocationPoint> GetAll();
         public Task<LocationPoint> GetLocationyPointById(long id);
+
+        public Task AddPoint(LocationPoint locationPoint);
+        public Task EditPoint(LocationPoint locationPoint);
+        public Task DeletePoint(LocationPoint locationPoint);
     }
 }

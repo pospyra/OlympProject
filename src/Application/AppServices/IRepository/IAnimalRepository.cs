@@ -17,5 +17,11 @@ namespace AppServices.IRepository
         public Task<IReadOnlyCollection<Animal>> GetAllAnimal();
 
         IQueryable<Animal> GetAll();
+
+        public Task AddAnimal(Animal model);
+
+        public Task EditAnimal(Animal model);
+
+        public Task DeleteAnimal(Animal account);
     }
 }
