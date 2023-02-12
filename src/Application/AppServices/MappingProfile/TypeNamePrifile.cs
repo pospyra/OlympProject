@@ -9,13 +9,14 @@ using System.Threading.Tasks;
 
 namespace AppServices.MappingProfile
 {
-    public class AnimalTypeMapProfile : Profile
+    public class TypeNamePrifile : Profile
     {
-        public AnimalTypeMapProfile()
-        { 
-            CreateMap<AnimalType, InfoTypeNameResponse>().ReverseMap();
+        public TypeNamePrifile() 
+        {
+            CreateMap<TypeName, InfoTypeNameResponse>().ReverseMap();
             CreateMap<AddOrUpdateTypeRequest, InfoTypeNameResponse>().ReverseMap();
-            CreateMap<AnimalType, AddOrUpdateTypeRequest>().ReverseMap();
+            CreateMap<TypeName, AddOrUpdateTypeRequest>().ReverseMap();
         }
+       
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Migrations.Migrations
 {
     [DbContext(typeof(MigrationsDbContext))]
-    partial class MigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230212161025_DelConn")]
+    partial class DelConn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -106,14 +109,12 @@ namespace Migrations.Migrations
                     b.Property<long>("AnimalId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("TypeNameId")
+                    b.Property<long>("TypeId")
                         .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
                     b.HasIndex("AnimalId");
-
-                    b.HasIndex("TypeNameId");
 
                     b.ToTable("AnimalType", (string)null);
                 });
@@ -163,23 +164,6 @@ namespace Migrations.Migrations
                     b.ToTable("LocationPoint", (string)null);
                 });
 
-            modelBuilder.Entity("Domain.TypeName", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TypeName");
-                });
-
             modelBuilder.Entity("Domain.Animal", b =>
                 {
                     b.HasOne("Domain.Account", "Account")
@@ -199,15 +183,7 @@ namespace Migrations.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.TypeName", "TypeName")
-                        .WithMany("AnimalType")
-                        .HasForeignKey("TypeNameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Animal");
-
-                    b.Navigation("TypeName");
                 });
 
             modelBuilder.Entity("Domain.AnimalVisitedLocation", b =>
@@ -244,11 +220,6 @@ namespace Migrations.Migrations
             modelBuilder.Entity("Domain.LocationPoint", b =>
                 {
                     b.Navigation("VisitedPoints");
-                });
-
-            modelBuilder.Entity("Domain.TypeName", b =>
-                {
-                    b.Navigation("AnimalType");
                 });
 #pragma warning restore 612, 618
         }

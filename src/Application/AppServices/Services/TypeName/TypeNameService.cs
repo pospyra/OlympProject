@@ -11,44 +11,44 @@ using System.Threading.Tasks;
 
 namespace AppServices.Services.AnimalType
 {
-    public class AnimalTypeService : IAnimalTypeService
+    public class TypeNameService : ITypeNameService
     {
-        public readonly IAnimalTypeRepository _animalTypeRepository;
+        public readonly ITypeNameRepository _typeRepository;
         public readonly IMapper _mapper;
 
-        public AnimalTypeService(IAnimalTypeRepository animalTypeRepository, IMapper mapper) 
+        public TypeNameService(ITypeNameRepository typeRepository, IMapper mapper) 
         {
-            _animalTypeRepository = animalTypeRepository; 
+            _typeRepository = typeRepository; 
             _mapper = mapper;
         }
 
         public async  Task<InfoTypeNameResponse> AddType(AddOrUpdateTypeRequest requestType)
         {
-            var newType = _mapper.Map<Domain.AnimalType>(requestType);
-            await _animalTypeRepository.AddType(newType);
+            var newType = _mapper.Map<Domain.TypeName>(requestType);
+            await _typeRepository.AddTypeName(newType);
 
             return _mapper.Map<InfoTypeNameResponse>(newType);
         }
 
         public async Task DeleteType(long id)
         {
-            var existingType = await _animalTypeRepository.GetAnimalTypeById(id);
+            var existingType = await _typeRepository.GetTypeNameById(id);
 
-            await _animalTypeRepository.DeleteType(existingType);
+            await _typeRepository.DeleteTypeName(existingType);
         }
 
         public async Task<InfoTypeNameResponse> EditType(long Id, AddOrUpdateTypeRequest requestType)
         {
-            var existingType = await _animalTypeRepository.GetAnimalTypeById(Id);
+            var existingType = await _typeRepository.GetTypeNameById(Id);
 
-            await _animalTypeRepository.EditType(_mapper.Map(requestType, existingType));
+            await _typeRepository.EditTypeName(_mapper.Map(requestType, existingType));
 
             return _mapper.Map<InfoTypeNameResponse>(requestType);
         }
 
         public async Task<InfoTypeNameResponse> GetInfoAnimalType(long id)
         {
-            var animalType = await _animalTypeRepository.GetAnimalTypeById(id);
+            var animalType = await _typeRepository.GetTypeNameById(id);
 
             InfoTypeNameResponse typeRes= null;
             if (animalType == null)

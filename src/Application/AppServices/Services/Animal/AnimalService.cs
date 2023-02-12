@@ -3,6 +3,7 @@ using AutoMapper;
 using Contracts.Animal;
 using Contracts.AnimalDto;
 using Contracts.AnimalType;
+using Domain;
 using Infrastructure.BaseRepositoty;
 using Infrastructure.Repositoty;
 using Microsoft.EntityFrameworkCore;
@@ -37,10 +38,31 @@ namespace AppServices.Services.Animal
 
         public async Task<InfoAnimalResponse> AddAnimal(AddAnimalRequest request)
         {
-
-
-            var newAnimal = _mapper.Map<Domain.Animal>(request);
+            // var newAnimal = _mapper.Map<Domain.Animal>(request);
+            var newAnimal = new Domain.Animal()
+            {
+                Weihgt = request.Weihgt,
+                Length = request.Length,
+                Height = request.Height,
+                Gender = request.Gender,
+                ChipperId = request.ChipperId,
+                ChippingLocationId = request.ChippingLocationId,
+                ChippingDateTime = DateTime.UtcNow
+            };
             await _animalRepository.AddAnimal(newAnimal);
+
+            Domain.AnimalType newAnimlTypes = null;
+            var animalTypes = request.AnimalTypes;
+
+            for (int i = 0; i <= animalTypes.Length-1; i++)
+            {
+                newAnimlTypes = new Domain.AnimalType()
+                {
+                    AnimalId = newAnimal.Id,
+                    TypeNameId = animalTypes[i]
+                };
+                await _animalTypeRepository.AddType(newAnimlTypes);
+            }
 
             return _mapper.Map<InfoAnimalResponse>(newAnimal);
         }

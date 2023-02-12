@@ -53,6 +53,10 @@ namespace Registrar
             services.AddTransient<IAnimalTypeService, AnimalTypeService>();
             services.AddTransient<IAnimalTypeRepository, AnimalTypeRepository>();
 
+            //регистрация типа
+            services.AddTransient<ITypeNameService, TypeNameService>();
+            services.AddTransient<ITypeNameRepository, TypeNameRepository>();
+
             //регистрация точки локации
             services.AddTransient<ILocationPointService, LocationPointService>();
             services.AddTransient<ILocationPointRepository, LocationPointRepository>();

@@ -11,11 +11,11 @@ namespace OlympProject.Controllers
 {
     public class AnimalTypeController : ControllerBase
     {
-        public readonly IAnimalTypeService _animalTypeService;
+        public readonly ITypeNameService _typeService;
 
-        public AnimalTypeController(IAnimalTypeService animalTypeService)
+        public AnimalTypeController(ITypeNameService typeService)
         {
-            _animalTypeService = animalTypeService;
+            _typeService = typeService;
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace OlympProject.Controllers
             if (currentUser == null)
                 return Unauthorized(HttpStatusCode.Unauthorized);
 
-            var res = await _animalTypeService.GetInfoAnimalType(typeId);
+            var res = await _typeService.GetInfoAnimalType(typeId);
             if (res == null)
                 return NotFound(HttpStatusCode.NotFound);
 
@@ -47,14 +47,14 @@ namespace OlympProject.Controllers
         /// <param name="update"></param>
         /// <returns></returns>
         [HttpPut("animals/types/{typeId}")]
-        [ProducesResponseType(typeof(IReadOnlyCollection<InfoAnimalTypeResponse>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IReadOnlyCollection<InfoTypeNameResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> EditAccount(long typeId, AddOrUpdateTypeRequest update)
         {
             string currentUser = "";
             if (currentUser == null)
                 return Unauthorized(HttpStatusCode.Unauthorized);
 
-            var res = await _animalTypeService.EditType(typeId, update);
+            var res = await _typeService.EditType(typeId, update);
             return Ok(res);
         }
 
@@ -64,10 +64,10 @@ namespace OlympProject.Controllers
         /// <param name="registerRequest"></param>
         /// <returns></returns>
         [HttpPost("animals/types")]
-        [ProducesResponseType(typeof(IReadOnlyCollection<InfoAnimalTypeResponse>), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(IReadOnlyCollection<InfoTypeNameResponse>), StatusCodes.Status201Created)]
         public async Task<IActionResult> AddType(AddOrUpdateTypeRequest request)
         {
-            var addPoint = await _animalTypeService.AddType(request);
+            var addPoint = await _typeService.AddType(request);
             if (request == null)
                 return Conflict(HttpStatusCode.Conflict);
 
@@ -80,7 +80,7 @@ namespace OlympProject.Controllers
         /// <param name="typeId"></param>
         /// <returns></returns>
         [HttpDelete("animals/types/{typeId}")]
-        [ProducesResponseType(typeof(IReadOnlyCollection<InfoAnimalTypeResponse>), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(IReadOnlyCollection<InfoTypeNameResponse>), (int)HttpStatusCode.OK)]
         public async Task<IActionResult> DeleteLocationPoint(long typeId)
         {
             if (typeId <= 0 || typeId == null)
@@ -94,7 +94,7 @@ namespace OlympProject.Controllers
             //if (res == null)
             //    return StatusCode(403);
 
-            await _animalTypeService.DeleteType(typeId);
+            await _typeService.DeleteType(typeId);
             return Ok();
         }
     }

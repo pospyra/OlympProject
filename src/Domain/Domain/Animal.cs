@@ -8,6 +8,10 @@ namespace Domain
 {
     public class Animal
     {
+        public Animal() 
+        {
+            LifeStatus = "ALIVE";
+        }
 
         public long Id { get; set; }
 
@@ -31,8 +35,8 @@ namespace Domain
 
         public Account Account { get; set; }
 
-        public ICollection<AnimalType> AnimalTypes { get; set; }
+        public ICollection<AnimalType>? AnimalType { get; set; }
 
-        public ICollection<AnimalVisitedLocation> VisitedLocation { get; set; }
+        public ICollection<AnimalVisitedLocation>? VisitedLocation { get; set; }
     }
 }

@@ -13,13 +13,12 @@ namespace Domain
         /// </summary>
         public long Id { get; set; }
 
-        /// <summary>
-        /// Тип животного
-        /// </summary>
-        public string Type { get; set; }
+        public long AnimalId { get; set; }
 
-        public long? AnimalId { get; set; }
+        public long TypeNameId { get; set; }
 
-        public Animal? Animal { get; set; }
+        public TypeName TypeName { get; set; }
+
+        public Animal Animal { get; set; }
     }
 }

@@ -9,18 +9,18 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Configuration
 {
-    public class AnimalConfiguration : IEntityTypeConfiguration<Animal>
+    internal class TypeNameConfiguration : IEntityTypeConfiguration<TypeName>
     {
-        public void Configure(EntityTypeBuilder<Animal> builder)
+        public void Configure(EntityTypeBuilder<TypeName> builder)
         {
-            builder.ToTable("Animal");
+            builder.ToTable("TypeName");
 
             builder.HasKey(b => b.Id);
             builder.Property(b => b.Id).ValueGeneratedOnAdd();
 
             builder.HasMany(t => t.AnimalType)
-                .WithOne(a => a.Animal)
-                .HasForeignKey(a => a.AnimalId);
+                .WithOne(a => a.TypeName)
+                .HasForeignKey(a => a.TypeNameId);
         }
     }
 }

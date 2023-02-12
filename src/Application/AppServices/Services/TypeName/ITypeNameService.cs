@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AppServices.Services.AnimalType
 {
-    public interface IAnimalTypeService
+    public interface ITypeNameService
     {
        public Task<InfoTypeNameResponse> GetInfoAnimalType(long id);
 

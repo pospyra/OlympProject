@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Contracts.AnimalType
 {
-    public class InfoAnimalTypeResponse
+    public class InfoTypeNameResponse
     {
         public long Id { get; set; }
 
