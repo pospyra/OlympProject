@@ -8,6 +8,7 @@ namespace Domain
 {
     public class Animal
     {
+
         public long Id { get; set; }
 
         public float Weihgt { get; set; }

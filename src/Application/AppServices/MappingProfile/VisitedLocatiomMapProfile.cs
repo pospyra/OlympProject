@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Contracts;
+using Contracts.VisitedLocationDto;
 using Domain;
 using System;
 using System.Collections.Generic;
@@ -13,7 +13,8 @@ namespace AppServices.MappingProfile
     {
         public VisitedLocatiomMapProfile()
         {
-            CreateMap<AnimalVisitedLocation, VisitedLocationResponse>();
+            CreateMap<AnimalVisitedLocation, VisitedLocationResponse>().ReverseMap();
+            CreateMap<EditVisitedLocationRequest, VisitedLocationResponse>().ReverseMap();
         }
     }
 }

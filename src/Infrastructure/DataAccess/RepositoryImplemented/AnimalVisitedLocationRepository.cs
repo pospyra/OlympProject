@@ -18,6 +18,16 @@ namespace DataAccess.RepositoryImplemented
             _baseRepository = baseRepository;
         }
 
+        public Task AddVisitedLocation(AnimalVisitedLocation visitedLocation)
+        {
+            return _baseRepository.AddAsync(visitedLocation);
+        }
+
+        public async  Task DeleteVisitedLocation(AnimalVisitedLocation visitedLocation)
+        {
+            await _baseRepository.DeleteAsync(visitedLocation); 
+        }
+
         public IQueryable<AnimalVisitedLocation> GetAll()
         {
             return _baseRepository.GetAll();
@@ -26,6 +36,11 @@ namespace DataAccess.RepositoryImplemented
         public async Task<AnimalVisitedLocation> GetById(long id)
         {
             return await _baseRepository.GetByIdAsync(id);
+        }
+
+        public async Task UpdateVisitedLocation(AnimalVisitedLocation visitedLocation)
+        {
+            await _baseRepository.UpdateAsync(visitedLocation);
         }
     }
 }

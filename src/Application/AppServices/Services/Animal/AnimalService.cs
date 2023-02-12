@@ -37,6 +37,8 @@ namespace AppServices.Services.Animal
 
         public async Task<InfoAnimalResponse> AddAnimal(AddAnimalRequest request)
         {
+
+
             var newAnimal = _mapper.Map<Domain.Animal>(request);
             await _animalRepository.AddAnimal(newAnimal);
 

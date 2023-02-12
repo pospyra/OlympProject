@@ -13,5 +13,10 @@ namespace AppServices.IRepository
 
         public Task<AnimalVisitedLocation> GetById(long id);
 
+        public Task AddVisitedLocation(AnimalVisitedLocation visitedLocation);
+
+        public Task DeleteVisitedLocation(AnimalVisitedLocation visitedLocation);
+
+        public Task UpdateVisitedLocation(AnimalVisitedLocation visitedLocation);
     }
 }

@@ -8,7 +8,7 @@ namespace Contracts.AnimalDto
 {
     public class AddAnimalRequest
     {
-        public long AnimalTypes { get; set; }
+        public long[] AnimalTypes { get; set; }
 
         public float Weihgt { get; set; }
 

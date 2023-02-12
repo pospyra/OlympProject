@@ -4,15 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts
+namespace Contracts.VisitedLocationDto
 {
-    public class VisitedLocationResponse
+    public class EditVisitedLocationRequest
     {
         public long Id { get; set; }
 
         public long PointId { get; set; }
-
-        public DateTime DateTimeOfVisitLocationPoint { get; set; }
-
     }
 }

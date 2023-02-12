@@ -92,11 +92,18 @@
             <summary>
             Просмотр информации о перемещении животного
             </summary>
-            <param name="animalId"></param>
-            <param name="startDateTime"></param>
-            <param name="endDateTime"></param>
-            <param name="from"></param>
-            <param name="size"></param>
+            <returns></returns>
+        </member>
+        <member name="M:OlympProject.Controllers.AnimalVisitedPointController.EditVisitedLocation(System.Int64,Contracts.VisitedLocationDto.EditVisitedLocationRequest)">
+            <summary>
+            Изменение информации о посещенной точке
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:OlympProject.Controllers.AnimalVisitedPointController.AddVisLocation(System.Int64,System.Int64)">
+            <summary>
+            Добавление посещенной точки
+            </summary>>
             <returns></returns>
         </member>
         <member name="M:OlympProject.Controllers.LocationPointController.GetPointById(System.Int64)">

@@ -90,11 +90,11 @@ namespace AppServices.Services.Account
         {
             var registerAcc = _mapper.Map<Domain.Account>(register);
             var existingUser = _accountRepository.GetAll().Where(x => x.Email == register.Email);
-            if (existingUser != null)
-            {
-                //throw new Exception($"Пользователь с email '{register.Email}' уже существует");
-                return null;
-            }
+            //if (existingUser != null)
+            //{
+            //    //throw new Exception($"Пользователь с email '{register.Email}' уже существует");
+            //    return null;
+            //}
             await _accountRepository.Registration(registerAcc);
             return _mapper.Map<InfoAccountResponse>(registerAcc);
         }
